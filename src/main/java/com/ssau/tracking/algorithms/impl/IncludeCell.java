@@ -18,15 +18,15 @@ import java.util.Arrays;
 public class IncludeCell implements TrackingAlgorithm {
 
     @Override
-    public Cell[] run(Cell[] left, Cell[] right, int id) {
+    public Cell[] run(Cell[] left, Cell[] right) {
         for(Cell cellR : right) {
             Arrays.sort(left, new SortedByArea(cellR));
             if(isOldCell(left[0], cellR)){
                 cellR.setValue(left[0].getValue());
             }
             else {
-                cellR.setValue(id);
-                id++;
+                cellR.setValue(TrackingController.id);
+                TrackingController.id++;
             }
         }
         return right;

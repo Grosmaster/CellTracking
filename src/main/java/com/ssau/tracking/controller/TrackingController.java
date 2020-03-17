@@ -15,7 +15,7 @@ import java.util.Arrays;
 @RestController()
 public class TrackingController {
 
-    private int id;
+    public static int id;
 
     @Autowired
     TrackingAlgorithm trackingAlgorithm;
@@ -45,7 +45,7 @@ public class TrackingController {
     }
 
     private Cell[] handler(Cell[] left, Cell[] right){
-        return trackingAlgorithm.run(left, right, id);
+        return trackingAlgorithm.run(left, right);
     }
 
     private void cleanPixelArray(Video video){

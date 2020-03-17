@@ -13,13 +13,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
-@Primary
+
 @Service
 //0.439650
 public class AreaCell implements TrackingAlgorithm {
 
     @Override
-    public Cell[] run(Cell[] leftC, Cell[] rightC, int id) {
+    public Cell[] run(Cell[] leftC, Cell[] rightC) {
         SuperCell[] left = createSuperCell(leftC);
         SuperCell[] right = createSuperCell(rightC);
 
@@ -34,8 +34,8 @@ public class AreaCell implements TrackingAlgorithm {
                 }
             }
             if(cellR.link){
-                cellR.setValue(id);
-                id++;
+                cellR.setValue(TrackingController.id);
+                TrackingController.id++;
             }
         }
 

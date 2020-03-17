@@ -15,11 +15,11 @@ import java.util.Comparator;
 
 //0.495097
 @Service
-//@Primary
+@Primary
 public class ThresholdValue implements TrackingAlgorithm {
 
     @Override
-    public Cell[] run(Cell[] leftC, Cell[] rightC, int id) {
+    public Cell[] run(Cell[] leftC, Cell[] rightC) {
         SuperCell[] left = createSuperCell(leftC);
         SuperCell[] right = createSuperCell(rightC);
 
@@ -38,15 +38,15 @@ public class ThresholdValue implements TrackingAlgorithm {
                         cellL.parent = true;
                         cellR.link = false;
                         cellR.setParent(cellL.getValue());
-                        cellR.setValue(id);
-                        id++;
+                        cellR.setValue(TrackingController.id);
+                        TrackingController.id++;
                         break;
                     }
                 }
             }
             if(cellR.link){
-                cellR.setValue(id);
-                id++;
+                cellR.setValue(TrackingController.id);
+                TrackingController.id++;
             }
         }
 

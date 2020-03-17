@@ -21,11 +21,11 @@ import java.util.List;
 public class Сombined implements TrackingAlgorithm {
 
     @Override
-    public Cell[] run(Cell[] leftC, Cell[] rightC, int id) {
+    public Cell[] run(Cell[] leftC, Cell[] rightC) {
         SuperCell[] left = createSuperCell(leftC);
         SuperCell[] right = createSuperCell(rightC);
         List<SuperCell> temp;
-
+        List<SuperCell> beforeLeft = new LinkedList<>();
         for(SuperCell cellL : left) {
             temp = new LinkedList<SuperCell>();
 
@@ -46,22 +46,17 @@ public class Сombined implements TrackingAlgorithm {
 
                 temp.get(0).setParent(cellL.getValue());
                 temp.get(0).link = false;
-                temp.get(0).setValue(id);
-                id++;
+                temp.get(0).setValue(TrackingController.id);
+                TrackingController.id++;
 
                 temp.get(1).setParent(cellL.getValue());
                 temp.get(1).link = false;
-                temp.get(1).setValue(id);
-                id++;
+                temp.get(1).setValue(TrackingController.id);
+                TrackingController.id++;
+            } else {
+                beforeLeft.add(cellL);
             }
         }
-
-        List<SuperCell> beforeLeft = new LinkedList<>();
-        for (SuperCell cellL : left) {
-            if(cellL.link)
-                beforeLeft.add(cellL);
-        }
-
 
         for (SuperCell cellR : right) {
             if (cellR.link){
@@ -72,8 +67,8 @@ public class Сombined implements TrackingAlgorithm {
                     cellR.link = false;
                     beforeLeft.remove(0);
                 } else {
-                    cellR.setValue(id);
-                    id++;
+                    cellR.setValue(TrackingController.id);
+                    TrackingController.id++;
                 }
             }
         }

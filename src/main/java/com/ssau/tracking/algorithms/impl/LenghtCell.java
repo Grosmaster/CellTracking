@@ -17,7 +17,7 @@ import java.util.Arrays;
 public class LenghtCell implements TrackingAlgorithm {
 
     @Override
-    public Cell[] run(Cell[] leftC, Cell[] rightC, int id) {
+    public Cell[] run(Cell[] leftC, Cell[] rightC) {
         SuperCell[] left = createSuperCell(leftC);
         SuperCell[] right = createSuperCell(rightC);
 
@@ -32,8 +32,8 @@ public class LenghtCell implements TrackingAlgorithm {
                 }
             }
             if(cellR.link){
-                cellR.setValue(id);
-                id++;
+                cellR.setValue(TrackingController.id);
+                TrackingController.id++;
             }
         }
 
